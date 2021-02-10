@@ -1,0 +1,7 @@
+program -> statement_list eof
+statement_list -> statement statement_list
+statement -> PRINT variable
+statement -> LOAD file INTO variable
+statement -> empty
+statement -> LOOP number loop_statement
+loop_statement -> statement_list STOP

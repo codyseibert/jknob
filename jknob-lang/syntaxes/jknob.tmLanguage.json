@@ -1,0 +1,79 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "jknob",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.jknob",
+					"match": "\\bLOAD ([a-z\/\\.]+) INTO ([a-z]+)\\b",
+					"captures": {
+						"1": {
+							"name": "string.quoted.double.jknob"
+						},
+						"2": {
+							"name": "support.variable.property"
+						}
+					}
+				},
+				{
+					"name": "keyword.control.jknob",
+					"match": "\\bFIND_LINES_IN ([a-z]+) CONTAINING ([a-zA-Z]+) INTO ([a-z]+)\\b",
+					"captures": {
+						"1": {
+							"name": "support.variable.property"
+						},
+						"2": {
+							"name": "string.quoted.double.jknob"
+						},
+						"3": {
+							"name": "support.variable.property"
+						}
+					}
+				},
+				{
+					"name": "keyword.control.jknob",
+					"match": "\\PRINT ([a-z]+)\\b",
+					"captures": {
+						"1": {
+							"name": "support.variable.property"
+						}
+					}
+				},
+				{
+					"name": "keyword.control.jknob",
+					"match": "\\LOOP ([0-9]+)\\b",
+					"captures": {
+						"1": {
+							"name": "entity.other.attribute-name"
+						}
+					}
+				},
+				{
+					"name": "keyword.control.jknob",
+					"match": "STOP"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.jknob",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.jknob",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.jknob"
+}

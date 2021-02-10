@@ -1,0 +1,25 @@
+{
+    "name": "jknob-lang",
+    "displayName": "jknob-lang",
+    "description": "",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.53.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "jknob",
+            "aliases": ["jknob", "JKNOB"],
+            "extensions": [".jknob"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "jknob",
+            "scopeName": "source.jknob",
+            "path": "./syntaxes/jknob.tmLanguage.json"
+        }]
+    }
+}
