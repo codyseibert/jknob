@@ -14,7 +14,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.jknob",
-					"match": "\\bLOAD ([a-z\/\\.]+) INTO ([a-z]+)\\b",
+					"match": "\\bLOAD ([a-z\/\\.]+) INTO ([a-zA-Z]+)\\b",
 					"captures": {
 						"1": {
 							"name": "string.quoted.double.jknob"
@@ -26,7 +26,7 @@
 				},
 				{
 					"name": "keyword.control.jknob",
-					"match": "\\bFIND_LINES_IN ([a-z]+) CONTAINING ([a-zA-Z]+) INTO ([a-z]+)\\b",
+					"match": "\\bFIND_LINES_IN ([a-z]+) CONTAINING ([a-zA-Z]+) INTO ([a-zA-Z]+)\\b",
 					"captures": {
 						"1": {
 							"name": "support.variable.property"
@@ -41,7 +41,19 @@
 				},
 				{
 					"name": "keyword.control.jknob",
-					"match": "\\PRINT ([a-z]+)\\b",
+					"match": "\\bGET ([a-z\\/\\:\\.]+) INTO ([a-zA-Z]+)\\b",
+					"captures": {
+						"1": {
+							"name": "string.quoted.double.jknob"
+						},
+						"2": {
+							"name": "support.variable.property"
+						}
+					}
+				},
+				{
+					"name": "keyword.control.jknob",
+					"match": "\\bPRINT ([a-zA-Z]+)\\b",
 					"captures": {
 						"1": {
 							"name": "support.variable.property"
@@ -50,7 +62,7 @@
 				},
 				{
 					"name": "keyword.control.jknob",
-					"match": "\\LOOP ([0-9]+)\\b",
+					"match": "\\bLOOP ([0-9]+)\\b",
 					"captures": {
 						"1": {
 							"name": "entity.other.attribute-name"

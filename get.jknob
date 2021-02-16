@@ -1,0 +1,3 @@
+GET https://google.com INTO googleHtml
+
+PRINT googleHtml

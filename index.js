@@ -1,4 +1,6 @@
 const fs = require('fs');
+const { get } = require('http');
+const fetch = require('node-fetch');
 
 const fileToRead = process.argv[2];
 const fileContent = fs.readFileSync(fileToRead, 'utf-8');
@@ -6,18 +8,18 @@ const tokens = fileContent.replace(/[\s\n\t\r]+/g, ' ').trim().split(' ');
 
 const memory = {};
 
-const program = (input) => {
-  statement_list(input);
+const program = async (input) => {
+  await statement_list(input);
 }
 
-const statement_list = (input) => {
-  const statementFound = statement(input)
+const statement_list = async (input) => {
+  const statementFound = await statement(input)
   if (statementFound) {
-    statement_list(input)
+    await statement_list(input)
   }
 }
 
-const statement = (input) => {
+const statement = async (input) => {
   const token = input.shift();
   if (token === 'PRINT') {
     const next = input.shift();
@@ -42,27 +44,39 @@ const statement = (input) => {
     memory[into] = joined;
     return true;
   } else if (token === 'LOOP') {
-    loop(input);
+    await loop(input);
+    return true;
+  } else if (token === 'GET') {
+    await GET(input);
     return true;
   }
   input.unshift(token);
   return false;
 }
 
-const loop = (input) => {
+const loop = async (input) => {
   const amount = parseInt(input.shift());
 
-  const block = [];
-  let token = input.shift();
-
-  while (token !== 'STOP') {
-    block.push(token);
-    token = input.shift();
+  let i = 0;
+  while (i++ < amount) {
+    if (i === amount) {
+      await statement_list(input)
+    } else {
+      await statement_list([...input])
+    }
+    if (input[0] === 'STOP') {
+      input.shift();
+    }
   }
+}
 
-  for (let i = 0; i < amount; i++) {
-    statement_list([...block]);
-  }
+const GET = async (input) => {
+  const url = input.shift();
+  input.shift();
+  variableName = input.shift();
+  await fetch(url)
+    .then(response => response.text())
+    .then(text => memory[variableName] = text);
 }
 
 program(tokens);

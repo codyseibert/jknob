@@ -4,14 +4,10 @@ FIND_LINES_IN grammar CONTAINING ERROR INTO errors
 FIND_LINES_IN grammar CONTAINING DEBUG INTO debugs
 FIND_LINES_IN grammar CONTAINING INFO INTO infos
 
-LOOP 2
-  PRINT errors
+LOOP 6
+  LOOP 6
+    PRINT errors
+  STOP
 STOP
 
-LOOP 3
-  PRINT debugs
-STOP
-
-LOOP 4
-  PRINT infos
-STOP
+PRINT infos
